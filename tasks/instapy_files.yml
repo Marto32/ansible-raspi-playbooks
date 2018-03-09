@@ -1,0 +1,21 @@
+# Add cron
+#
+
+- name: "Copy quickstart"
+  copy:
+    src: ../files/quickstart.py
+    dest: "{{ instapy_path }}/quickstart.py"
+    force: yes
+    owner: root
+    group: root
+    mode: 0774
+  tags:
+    - instapy_files
+
+- name: "Run Instapy"
+  cron:
+    minute: "0"
+    hour: "6-23"
+    job: "cd /home/pi/code/InstaPy && INSTAGRAM_USERNAME={{ instagram_username }} INSTAGRAM_PASSWORD='{{ instagram_password }}' xvfb-run -a /home/pi/.virtualenvs/instapy36/bin/python -- /home/pi/code/InstaPy/quickstart.py >> /var/log/instapy.log 2>&1"
+  tags:
+    - instapy_files

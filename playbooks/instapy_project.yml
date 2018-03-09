@@ -5,6 +5,13 @@
   gather_facts: yes
   vars:
     instapy_path: "/home/pi/code/InstaPy"
+  vars_prompt:
+  - name: instagram_username
+    prompt: "please enter your instagram username:"
+    private: no
+  - name: instagram_password
+    prompt: "please enter your instagram password:"
+    private: yes
 
   tasks:
 
@@ -49,3 +56,6 @@
 
     - include: ../tasks/chromium.yml
       tags: chrome
+
+    - include: ../tasks/instapy_files.yml
+      tags: instapy_files

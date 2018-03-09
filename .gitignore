@@ -2,3 +2,4 @@
 *.log
 *.retry
 *hosts
+quickstart.py
